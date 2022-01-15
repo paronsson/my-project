@@ -6,6 +6,8 @@ import Head.Seo as Seo
 import Page exposing (Page, StaticPayload)
 import Pages.PageUrl exposing (PageUrl)
 import Pages.Url
+import Path exposing(Path)
+import Browser.Navigation
 import Shared
 import View exposing (View)
 import Html exposing (..)
@@ -31,7 +33,7 @@ page =
         { head = head
         , data = data
         }
-        |> Page.buildNoState { view = view }
+        |> Page.buildWithLocalState { init = init, view = view, subscriptions = subscriptions, update = update }
 
 
 data : DataSource Data
@@ -62,13 +64,34 @@ head static =
 type alias Data =
     ()
 
+init :
+          Maybe PageUrl
+          -> Shared.Model
+          -> StaticPayload Data RouteParams
+          -> ( Model, Cmd Msg )
+init maybeUrl sharedModel static =
+    ( (), Cmd.none )
 
-view :
-    Maybe PageUrl
-    -> Shared.Model
-    -> StaticPayload Data RouteParams
-    -> View Msg
-view maybeUrl sharedModel static =
+
+subscriptions :
+          Maybe PageUrl
+          -> RouteParams
+          -> Path.Path
+          -> Model
+          -> Sub Msg
+subscriptions _ _ _ _ = Sub.none
+
+update :
+          PageUrl
+          -> Maybe Browser.Navigation.Key
+          -> Shared.Model
+          -> StaticPayload Data RouteParams
+          -> Msg
+          -> Model
+          -> ( Model, Cmd Msg )
+update _ _ _ _ _ _ = ( (), Cmd.none )
+
+view maybeUrl sharedModel _ _ =
     { title = sharedModel.appName ++ " - " ++ "Root"
     , body = [ Html.a [href "xx"] [Html.text "link"] ]
     }
