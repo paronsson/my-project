@@ -1,6 +1,7 @@
 module Page.Xx exposing (Data, Model, Msg, page)
 
 import DataSource exposing (DataSource)
+import DataSource.Glob as Glob
 import Head
 import Head.Seo as Seo
 import Page exposing (Page, StaticPayload)
@@ -29,14 +30,25 @@ page : Page RouteParams Data
 page =
     Page.single
         { head = head
-        , data = data
+        , data = blogPosts
         }
         |> Page.buildNoState { view = view }
 
 
-data : DataSource Data
-data =
-    DataSource.succeed ()
+blogPosts :
+    DataSource Data
+blogPosts =
+    Glob.succeed
+        (\filePath slug ->
+            { filePath = filePath
+            , slug = slug
+            }
+        )
+        |> Glob.captureFilePath
+        |> Glob.match (Glob.literal "content/blog/")
+        |> Glob.capture Glob.wildcard
+        |> Glob.match (Glob.literal ".md")
+        |> Glob.toDataSource
 
 
 head :
@@ -60,7 +72,14 @@ head static =
 
 
 type alias Data =
-    ()
+    (List
+                { filePath : String
+                , slug : String
+                }
+    )
+
+
+getFilePath data = List.map (\z -> Html.div [] [Html.text z.filePath]) data
 
 
 view :
@@ -70,5 +89,5 @@ view :
     -> View Msg
 view maybeUrl sharedModel static =
     { title = sharedModel.appName ++ " - " ++ "Xx"
-    , body = [ Html.text "xx" ]
+    , body = getFilePath static.data
     }

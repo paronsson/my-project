@@ -10,24 +10,23 @@ import Path exposing(Path)
 import Browser.Navigation
 import Shared
 import View exposing (View)
-import Html exposing (..)
 import Html.Attributes  exposing (..)
+import Html exposing (Html, button, div, text)
+import Html.Events exposing (onClick)
 
 
 
-type alias Model =
-    ()
+type alias Model = Int
 
 
-type alias Msg =
-    Never
+type Msg =
+    Increment | Decrement
 
 
 type alias RouteParams =
     {}
 
 
-page : Page RouteParams Data
 page =
     Page.single
         { head = head
@@ -70,7 +69,7 @@ init :
           -> StaticPayload Data RouteParams
           -> ( Model, Cmd Msg )
 init maybeUrl sharedModel static =
-    ( (), Cmd.none )
+    ( 0, Cmd.none )
 
 
 subscriptions :
@@ -78,7 +77,7 @@ subscriptions :
           -> RouteParams
           -> Path.Path
           -> Model
-          -> Sub Msg
+          -> Sub x
 subscriptions _ _ _ _ = Sub.none
 
 update :
@@ -89,9 +88,20 @@ update :
           -> Msg
           -> Model
           -> ( Model, Cmd Msg )
-update _ _ _ _ _ _ = ( (), Cmd.none )
+update _ _ _ _ msg model =  case msg of
+                              Increment ->
+                                (model + 1, Cmd.none)
 
-view maybeUrl sharedModel _ _ =
+                              Decrement ->
+                                (model - 1, Cmd.none)
+
+
+view maybeUrl sharedModel model _ =
     { title = sharedModel.appName ++ " - " ++ "Root"
-    , body = [ Html.a [href "xx"] [Html.text "link"] ]
+    , body = [ Html.a [href "xx"] [Html.text "link"] ,
+               div []
+                   [ button [ onClick Decrement ] [ text "-" ]
+                   , div [] [ text (String.fromInt model) ]
+                   , button [ onClick Increment ] [ text "+" ]
+               ]]
     }
