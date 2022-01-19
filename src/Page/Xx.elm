@@ -40,19 +40,14 @@ blogPosts :
     DataSource Data
 blogPosts =
     Glob.succeed
-        (\filePath slug ->
-            { filePath = filePath
-            , slug = slug
-            }
-        )
+        (\filePath ->filePath)
         |> Glob.captureFilePath
         |> Glob.match (Glob.literal "content/blog/")
-        |> Glob.capture Glob.wildcard
+        |> Glob.match Glob.wildcard
         |> Glob.match (Glob.literal ".md")
         |> Glob.toDataSource
         |> DataSource.andThen
-            (\x ->  DataSource.combine (List.map (\y -> File.bodyWithoutFrontmatter y.filePath) x))
---File.bodyWithFrontmatter blogPostDecoder
+            (\x -> DataSource.combine (List.map (File.bodyWithFrontmatter blogPostDecoder) x))
 
 type alias BlogPostMetadata =
     { body : String
@@ -84,10 +79,10 @@ head static =
         |> Seo.website
 
 
-type alias Data = List String
+type alias Data = List BlogPostMetadata
 
 
-viewPost data = List.map (\z -> Html.div [] [Html.text z, Html.br [] []]) data
+viewPost data = List.map (\z -> Html.div [] [Html.text z.title, Html.text " ", Html.text z.body]) data
 
 
 view :
