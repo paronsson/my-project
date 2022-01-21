@@ -5,16 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d67e60f2-b578-4ef6-afe9-5eedf99f2493" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/content/blog/blog4.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/blog/blog1.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/blog/blog1.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/blog/blog2.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/blog/blog2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/blog/blog1.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/blog/blog2.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/content/blog/blog3.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/blog/blog3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/blog/blog4.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/blog/blog5.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/blog/blog5.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/blog/blog6.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/blog/blog6.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/blog/blog7.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/blog/blog7.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/blog/blog8.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/blog/blog8.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/blog/blog9.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/blog/blog9.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/blog/blog5.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/blog/blog6.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/blog/blog7.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/blog/blog8.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/blog/blog9.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/elm.json" beforeDir="false" afterPath="$PROJECT_DIR$/elm.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Page/Xx.elm" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page/Xx.elm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

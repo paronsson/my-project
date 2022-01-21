@@ -13,6 +13,9 @@ import Html exposing (..)
 import Html.Attributes  exposing (..)
 import DataSource.File as File
 import OptimizedDecoder as Decode exposing (Decoder)
+import Markdown.Parser as Markdown
+import Markdown.Renderer
+
 
 
 type alias Model =
@@ -51,13 +54,15 @@ blogPosts =
 
 type alias BlogPostMetadata =
     { body : String
-    , title : String
+    , title : String,
+      publish : String
     }
 
 blogPostDecoder : String -> Decoder BlogPostMetadata
 blogPostDecoder body =
-    Decode.map (BlogPostMetadata body)
+    Decode.map2 (BlogPostMetadata body)
         (Decode.field "title" Decode.string)
+        (Decode.field "publish" Decode.string)
 
 head :
     StaticPayload Data RouteParams
@@ -81,8 +86,35 @@ head static =
 
 type alias Data = List BlogPostMetadata
 
+viewMarkup : String -> Html Msg
+viewMarkup markdownInput =
+    Html.div [ ]
+        [case
+            markdownInput
+                |> Markdown.parse
+                |> Result.mapError deadEndsToString
+                |> Result.andThen (\ast -> Markdown.Renderer.render Markdown.Renderer.defaultHtmlRenderer ast)
+          of
+            Ok rendered ->
+                div [] rendered
 
-viewPost data = List.map (\z -> Html.div [] [Html.text z.title, Html.text " ", Html.text z.body]) data
+            Err errors ->
+                text errors
+        ]
+
+deadEndsToString deadEnds =
+    deadEnds
+        |> List.map Markdown.deadEndToString
+        |> String.join "\n"
+
+viewPost data = [Html.h1 [style "text-align" "center"] [Html.b [] [text "BLOG"]]] ++
+    (List.map (\z -> Html.div [style "padding" "20px", style "border" "1px solid", style "margin" "20px"]
+                             [Html.div [style "text-align" "right"]
+                                       [Html.text (case (List.head (String.split "T" z.publish)) of
+                                                                                       Just x -> x
+                                                                                       Nothing -> "")],
+                              Html.div [] [Html.h1 [style "text-align" "center"] [text z.title]],
+                            viewMarkup z.body]) data)
 
 
 view :
