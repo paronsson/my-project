@@ -1,4 +1,4 @@
-module Page.Xx exposing (Data, Model, Msg, page)
+module Page.Blog exposing (Data, Model, Msg, page)
 
 import DataSource exposing (DataSource)
 import DataSource.Glob as Glob
@@ -108,7 +108,7 @@ deadEndsToString deadEnds =
         |> String.join "\n"
 
 viewPost data = [Html.h1 [style "text-align" "center"] [Html.b [] [text "BLOG"]]] ++
-    (List.map (\z -> Html.div [style "padding" "20px", style "border" "1px solid", style "margin" "20px"]
+    (List.map (\z -> Html.div [style "border-radius" "40px", style "margin" "20px", style "margin-left" "auto", style "max-width" "700px", style "margin-right" "auto", style "max-width" "700px", style "padding" "40px", style "border" "4px solid", style "border-color" "rgb(180, 180, 180)"]
                              [Html.div [style "text-align" "right"]
                                        [Html.text (case (List.head (String.split "T" z.publish)) of
                                                                                        Just x -> x
@@ -123,6 +123,6 @@ view :
     -> StaticPayload Data RouteParams
     -> View Msg
 view maybeUrl sharedModel static =
-    { title = sharedModel.appName ++ " - " ++ "Xx"
+    { title = sharedModel.appName ++ " - " ++ "Blog"
     , body = viewPost static.data
     }
