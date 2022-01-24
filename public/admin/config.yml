@@ -21,7 +21,6 @@ collections:
       - {label: "Publish Date", name: "publish", widget: "datetime"}
       - {label: "Body", name: "body", widget: "markdown"}
 
-collections:
   - name: "posts"
     label: "Post"
     folder: "_posts"
