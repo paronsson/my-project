@@ -1,3 +1,13 @@
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
+
 /** @typedef {{load: (Promise<unknown>); flags: (unknown)}} ElmPagesInit */
 
 /** @type ElmPagesInit */
