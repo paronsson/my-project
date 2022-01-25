@@ -45,7 +45,7 @@ blogPosts =
     Glob.succeed
         (\filePath ->filePath)
         |> Glob.captureFilePath
-        |> Glob.match (Glob.literal "content/blog/")
+        |> Glob.match (Glob.literal "public/content/blog/")
         |> Glob.match Glob.wildcard
         |> Glob.match (Glob.literal ".md")
         |> Glob.toDataSource
