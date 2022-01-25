@@ -112,8 +112,8 @@ viewPost data = [Html.h1 [style "text-align" "center"] [Html.b [] [text "BLOG"]]
                              [Html.div [style "text-align" "right"]
                                        [Html.text (case (List.head (String.split "T" z.publish)) of
                                                                                        Just x -> x
-                                                                                       Nothing -> "")],
-                              Html.div [] [Html.h1 [style "text-align" "center"] [text z.title]],
+                                                                                       Nothing -> ""),
+                                        Html.h1 [style "text-align" "center"] [text z.title]],
                             viewMarkup z.body]) data)
 
 
