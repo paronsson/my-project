@@ -115,7 +115,7 @@ viewPost data = [Html.h1 [style "text-align" "center"] [Html.b [] [text "BLOG"]]
                                                                                        Nothing -> ""),
                                         Html.br [] [],
                                         Html.div [style "text-align" "center"] [text z.title],
-                            viewMarkup z.body]) data)
+                            viewMarkup z.body]]) data)
 
 
 view :
