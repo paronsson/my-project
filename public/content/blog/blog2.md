@@ -4,4 +4,4 @@ publish: 2022-01-23
 ---
 **XX**
 
-![Misse](/content/media/422.jpg "Misse")
+![Misse](/content/media/julkatt.jpg "Misse")
