@@ -6,4 +6,4 @@ publish: 2022-01-23
 
 
 
-![Misse](public/content/media/julkatt.jpg "Misse")
+![Misse](/public/content/media/julkatt.jpg "Misse")
