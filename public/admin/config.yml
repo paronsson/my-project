@@ -6,7 +6,7 @@ publish_mode: editorial_workflow
 
 
 # These lines should *not* be indented
-media_folder: "/content/media" # Media files will be stored in the repo under public/content/media
+media_folder: "public/content/media" # Media files will be stored in the repo under public/content/media
 public_folder: "/content/media" # The src attribute for uploaded media will begin with /media
 
 collections:
