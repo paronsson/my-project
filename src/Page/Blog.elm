@@ -88,7 +88,7 @@ type alias Data = List BlogPostMetadata
 
 viewMarkup : String -> Html Msg
 viewMarkup markdownInput =
-    Html.div [ ]
+    Html.div [ style "text-align" "center" ]
         [case
             markdownInput
                 |> Markdown.parse
@@ -96,7 +96,7 @@ viewMarkup markdownInput =
                 |> Result.andThen (\ast -> Markdown.Renderer.render Markdown.Renderer.defaultHtmlRenderer ast)
           of
             Ok rendered ->
-                div [] rendered
+                div [style "text-align" "left"] rendered
 
             Err errors ->
                 text errors
@@ -108,12 +108,12 @@ deadEndsToString deadEnds =
         |> String.join "\n"
 
 viewPost data = [Html.h1 [style "text-align" "center"] [Html.b [] [text "BLOG"]]] ++
-    (List.map (\z -> Html.div [style "border-radius" "40px", style "margin" "20px", style "margin-left" "auto", style "max-width" "700px", style "margin-right" "auto", style "max-width" "700px", style "padding" "40px", style "padding-top" "10px", style "border" "4px solid", style "border-color" "rgb(180, 180, 180)"]
+    (List.map (\z -> Html.div [style "border-radius" "10px", style "margin" "10px", style "margin-left" "auto", style "margin-right" "auto", style "padding" "10px", style "border" "4px solid", style "border-color" "rgb(180, 180, 180)"]
                              [Html.div [style "text-align" "right"]
                                        [Html.text (case (List.head (String.split "T" z.publish)) of
                                                                                        Just x -> x
                                                                                        Nothing -> ""),
-                                        Html.div [style "text-align" "center"] [text z.title],
+                                        Html.h1 [style "text-align" "center"] [text z.title],
                             viewMarkup z.body]]) data)
 
 
