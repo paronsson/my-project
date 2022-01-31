@@ -113,8 +113,8 @@ viewPost data = [Html.h1 [style "text-align" "center", style "font-size" "10vw;"
                                        [Html.text (case (List.head (String.split "T" z.publish)) of
                                                                                        Just x -> x
                                                                                        Nothing -> ""),
-                                        Html.h1 [style "text-align" "center"] [text z.title],
-                                        Html.hr [style "height" "5px", style "background" "rgb(180, 180, 180)"] [],
+                                        Html.h1 [style "text-align" "center", style "margin" "0px", style "padding" "3px"] [text z.title],
+                                        Html.hr [style "height" "3px", style "background" "rgb(180, 180, 180)"] [],
                             viewMarkup z.body]]) data)
 
 
