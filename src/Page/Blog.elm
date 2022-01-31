@@ -108,13 +108,13 @@ deadEndsToString deadEnds =
         |> String.join "\n"
 
 viewPost data = [Html.h1 [style "text-align" "center", style "font-size" "10vw;"] [text "BLOG"]] ++
-    (List.map (\z -> Html.div [style "border-radius" "10px", style "margin" "10px", style "margin-left" "auto", style "margin-right" "auto", style "padding" "10px", style "border" "4px solid", style "border-color" "rgb(180, 180, 180)"]
+    (List.map (\z -> Html.div [style "border-radius" "30px", style "margin" "10px", style "margin-left" "auto", style "margin-right" "auto", style "padding" "10px", style "border" "4px solid", style "border-color" "rgb(180, 180, 180)"]
                              [Html.div [style "text-align" "right"]
                                        [Html.text (case (List.head (String.split "T" z.publish)) of
                                                                                        Just x -> x
                                                                                        Nothing -> ""),
                                         Html.h1 [style "text-align" "center"] [text z.title],
-                                        Html.hr [] [],
+                                        Html.hr [style "height" "5px", style "background" "rgb(180, 180, 180)"] [],
                             viewMarkup z.body]]) data)
 
 
