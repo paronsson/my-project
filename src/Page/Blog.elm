@@ -88,7 +88,7 @@ type alias Data = List BlogPostMetadata
 
 viewMarkup : String -> Html Msg
 viewMarkup markdownInput =
-    Html.div [ style "max-width" "70%", style "margin-left" "auto", style "margin-right" "auto", style "padding" "15px"]
+    Html.div [ style "align" "center"]
         [case
             markdownInput
                 |> Markdown.parse
