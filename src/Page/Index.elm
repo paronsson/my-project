@@ -98,7 +98,8 @@ update _ _ _ _ msg model =  case msg of
 
 view maybeUrl sharedModel model _ =
     { title = sharedModel.appName ++ " - " ++ "Root"
-    , body = [ Html.a [href "admin"] [Html.text "admin"], Html.br [] [], Html.a [href "blog"] [Html.text "link"],
+    , body = [ Html.a [href "admin"] [Html.text "admin"], Html.br [] [], Html.a [href "blog"] [Html.text "blog"],
+               div [id "jstree"] [Html.text "skit"],
                div []
                    [ button [ onClick Decrement ] [ text "-" ]
                    , div [] [ text (String.fromInt model) ]
